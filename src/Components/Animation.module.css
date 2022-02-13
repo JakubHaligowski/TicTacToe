@@ -1,0 +1,78 @@
+@keyframes expand_horizontal {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 500px;
+  }
+}
+
+@keyframes expand_vertiacl {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 500px;
+  }
+}
+
+@keyframes expand_oblique {
+  from {
+    transform: translateY(-250px);
+    height: 0px;
+  }
+  to {
+    transform: translateY(0px);
+    height: 500px;
+  }
+}
+
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 500px;
+  height: 500px;
+
+  padding: 30px;
+  display: grid;
+  gap: 22px;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* display: none; */
+}
+
+.line_horizonatl {
+  background-color: gray;
+  height: 15px;
+  width: 500px;
+  border-radius: 15px;
+  animation-name: expand_horizontal;
+  animation-duration: 1.5s;
+  align-self: center;
+}
+
+.line_vertical {
+  background-color: gray;
+  width: 15px;
+  height: 500px;
+  border-radius: 15px;
+  animation-name: expand_vertiacl;
+  animation-duration: 1.5s;
+  justify-self: center;
+}
+
+.line_oblique{
+  grid-column: 1/4;
+  grid-row: 1/4;
+  width: 100px;
+  height: 15px;
+  /* animation-name: expand_oblique; */
+  animation-duration: 10s;
+  background-color: gray;
+  border-radius: 15px;
+  transform: rotate(45deg) scale(1) ;
+
+}
