@@ -16,17 +16,6 @@
   }
 }
 
-@keyframes expand_oblique {
-  from {
-    transform: translateY(-250px);
-    height: 0px;
-  }
-  to {
-    transform: translateY(0px);
-    height: 500px;
-  }
-}
-
 
 .container {
   position: absolute;
@@ -43,6 +32,8 @@
   grid-template-columns: 1fr 1fr 1fr;
   /* display: none; */
 }
+
+
 
 .line_horizonatl {
   background-color: gray;
@@ -67,12 +58,27 @@
 .line_oblique{
   grid-column: 1/4;
   grid-row: 1/4;
-  width: 100px;
+  align-self: center;
+  justify-self: center;
+  width: 500px;
   height: 15px;
-  /* animation-name: expand_oblique; */
-  animation-duration: 10s;
+  animation-name: expand_horizontal;
+  animation-duration: 1.5s;
   background-color: gray;
   border-radius: 15px;
-  transform: rotate(45deg) scale(1) ;
+  transform: rotate(45deg) scaleX(1.3) ;
+}
 
+.line_oblique_rev {
+  grid-column: 1/4;
+  grid-row: 1/4;
+  align-self: center;
+  justify-self: center;
+  width: 500px;
+  height: 15px;
+  animation-name: expand_horizontal;
+  animation-duration: 1.5s;
+  background-color: gray;
+  border-radius: 15px;
+  transform: rotate(-45deg) scaleX(1.3) ;
 }

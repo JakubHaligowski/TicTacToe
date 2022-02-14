@@ -25,7 +25,13 @@ function Animation(props) {
             classType = styles.line_vertical;
             break;
         case 6:
+            animationStyle = {};
+            classType = styles.line_oblique;
+            break;
         case 7:
+            animationStyle = {};
+            classType = styles.line_oblique_rev;
+            break;
         default:
             console.log(props.animationPos);
             break;
@@ -33,7 +39,7 @@ function Animation(props) {
     
     return (
         <div className={styles.container}>
-            <div className={styles.line_oblique} /*className={classType} style={animationStyle}*/ ></div>
+            <div className={classType} style={animationStyle} ></div>
         </div>
         
     );
