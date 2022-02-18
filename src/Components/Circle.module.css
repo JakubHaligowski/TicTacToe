@@ -1,0 +1,15 @@
+@keyframes DrawIn{
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#circle {
+    stroke-dasharray: 241;
+    stroke-dashoffset: 241;
+    
+    transform-origin: center;
+    transform: rotate(30deg);
+
+    animation: DrawIn 0.7s ease forwards;
+}

@@ -1,6 +1,6 @@
 import styles from "./Tile.module.css";
-import { ReactComponent as Circle } from "../res/Circle.svg";
-import { ReactComponent as Cross } from "../res/Cross.svg";
+import Cross from "./Cross";
+import Circle from "./Circle";
 
 function Tile(props) {
   let content;
