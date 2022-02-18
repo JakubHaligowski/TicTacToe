@@ -1,0 +1,17 @@
+.svg{
+    height: 35px;
+}
+
+.cross {
+    stroke: #33FFFF;
+}
+
+.circle {
+    stroke: #EA6B6B;
+}
+
+.score {
+    display: flex;
+    gap: 5%;
+    padding: 3%;
+}

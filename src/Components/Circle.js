@@ -1,20 +1,16 @@
-import styles from './Circle.module.css'
-
-function Circle() {
+function Circle(props) {
   return (
     <svg
-      width="80"
-      height="80"
+      className={props.svgClass}
       viewBox="0 0 80 80"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <circle
-        id={styles.circle}
+        className={props.shapeClass}
         cx="40"
         cy="40"
         r="35.5"
-        stroke="#EA6B6B"
         stroke-width="9"
       />
     </svg>

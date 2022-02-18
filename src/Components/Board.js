@@ -2,6 +2,10 @@ import styles from "./Board.module.css";
 import Tile from "./Tile";
 import { useState, useEffect } from "react";
 import Animation from "./Animation";
+import Modal from "./Modal";
+import Status from "./Status";
+import Score from "./Score";
+
 
 function Board() {
   const [gameState, setgameState] = useState({
@@ -13,6 +17,7 @@ function Board() {
   const [message, setMessage] = useState();  
   const [showAnimation , setShowAnimation] = useState(false);
   const [animationPos , setAnimationPos] = useState(-1);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     let message;
@@ -20,10 +25,11 @@ function Board() {
     if (winner) {
       message = "Wygrywa: " + winner;
       setShowAnimation(true);
-      setAnimationPos(position)
+      setAnimationPos(position);
+      setShowModal(true);
     } else if (gameState.move === 9) {
       message = "Remis";
-      
+      setShowModal(true);      
     } else {
       message = "Następny gracz: " + (gameState.isXNext ? "X" : "O");
     }
@@ -49,12 +55,16 @@ function Board() {
   }
 
   const restartHandler = () => {
+    setShowModal(false);
+    setShowAnimation(false);
     setgameState({ board: Array(9).fill(null), isXNext: true, move: 0 });
   };
 
   return (
     <div id={styles.game}>
-      <div id={styles.status}>{message}</div>
+      {showModal && <Modal text={message} onRestart={restartHandler}/>}
+      <Score next={gameState.isXNext}/>
+      <Status next={gameState.isXNext}/>
       <div id={styles.board}>
       {showAnimation && <Animation position={animationPos}/>}
         {gameState.board.map((tile, i) => {
