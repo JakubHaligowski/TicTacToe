@@ -7,10 +7,18 @@ function Tile(props) {
 
   switch (props.value) {
     case "O":
-      content = <Circle />;
+      content = (
+        <Circle svgClass={styles.svgClass} shapeClass={styles.circle} />
+      );
       break;
     case "X":
-      content = <Cross />;
+      content = (
+        <Cross
+          svgClass={styles.svgClass}
+          shape1Class={styles.cross_line1}
+          shape2Class={styles.cross_line2}
+        />
+      );
       break;
     default:
       content = " ";

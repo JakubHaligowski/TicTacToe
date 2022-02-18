@@ -1,25 +1,20 @@
-import styles from "./Cross.module.css";
-
-function Cross() {
+function Cross(props) {
   return (
     <svg
-      width="78"
-      height="78"
+      className={props.svgClass}
       viewBox="0 0 78 78"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        id={styles.line1}
+        className={props.shape1Class}
         d="M5 5L73 73"
-        stroke="#33FFFF"
         stroke-width="9"
         stroke-linecap="round"
       />
       <path
-        id={styles.line2}
+        className={props.shape2Class}
         d="M5 73L73 5"
-        stroke="#33FFFF"
         stroke-width="9"
         stroke-linecap="round"
       />
