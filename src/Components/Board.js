@@ -1,73 +1,88 @@
 import styles from "./Board.module.css";
 import Tile from "./Tile";
-import { useState, useEffect } from "react";
+import {useReducer } from "react";
 import Animation from "./Animation";
 import Modal from "./Modal";
 import Status from "./Status";
 import Score from "./Score";
 
-
 function Board() {
-  const [gameState, setgameState] = useState({
+  const initialState = {
     board: Array(9).fill(null),
     isXNext: true,
     move: 0,
-  });
+    endOfGame: false,
+    winner: null,
+    winingPos: null,
+  };
 
-  const [message, setMessage] = useState();  
-  const [showAnimation , setShowAnimation] = useState(false);
-  const [animationPos , setAnimationPos] = useState(-1);
-  const [showModal, setShowModal] = useState(false);
+  function reducer(state, action) {
+    switch (action.type) {
+      case "move":
+        const boardUpdate = state.board.slice();
+        const id = action.tileId;
 
-  useEffect(() => {
-    let message;
-    const [winner, position] = calculateWinner(gameState.board);
-    if (winner) {
-      message = "Wygrywa: " + winner;
-      setShowAnimation(true);
-      setAnimationPos(position);
-      setShowModal(true);
-    } else if (gameState.move === 9) {
-      message = "Remis";
-      setShowModal(true);      
-    } else {
-      message = "Następny gracz: " + (gameState.isXNext ? "X" : "O");
+        if (boardUpdate[id] !== null) {
+          return state;
+        }
+
+        boardUpdate[id] = state.isXNext ? "X" : "O";
+
+        const [winner, position] = calculateWinner(boardUpdate);
+
+        if (winner) {
+          return {
+            ...state,
+            board: boardUpdate,
+            isXNext: !state.isXNext,
+            move: state.move + 1,
+            endOfGame: true,
+            winner: winner,
+            winingPos: position
+          };
+        } else if (state.move === 8) {
+          return {
+            ...state,
+            board: boardUpdate,
+            isXNext: !state.isXNext,
+            move: state.move + 1,
+            endOfGame: true
+          };
+        } else {
+          return {
+            ...state,
+            board: boardUpdate,
+            isXNext: !state.isXNext,
+            move: state.move + 1,
+          };
+        }
+ 
+      case "restart":
+        return initialState;
+      default:
+        throw new Error();
     }
+  }
 
-    console.log(message);
-    setMessage(message);
-  }, [gameState]);
+  const [state, dispatch] = useReducer(reducer, initialState);
+
 
   function onClickHandler(id) {
-    const boardUpdate = gameState.board.slice();
-
-    if (boardUpdate[id] !== null) {
-      return;
-    }
-
-    boardUpdate[id] = gameState.isXNext ? "X" : "O";
-
-    setgameState({
-      board: boardUpdate,
-      isXNext: !gameState.isXNext,
-      move: gameState.move + 1,
-    });
+    dispatch({ type: "move", tileId: id });
   }
 
   const restartHandler = () => {
-    setShowModal(false);
-    setShowAnimation(false);
-    setgameState({ board: Array(9).fill(null), isXNext: true, move: 0 });
+    dispatch({ type: "restart" });
   };
 
   return (
     <div id={styles.game}>
-      {showModal && <Modal text={message} onRestart={restartHandler}/>}
-      <Score next={gameState.isXNext}/>
-      <Status next={gameState.isXNext}/>
+      {state.endOfGame && <Modal winner={state.winner} onRestart={restartHandler} />}
+      <Score next={state.isXNext} />
+      <Status next={state.isXNext} />
       <div id={styles.board}>
-      {showAnimation && <Animation position={animationPos}/>}
-        {gameState.board.map((tile, i) => {
+        {state.endOfGame && <Animation position={state.winingPos} />}
+        {state.board.map((tile, i) => {
           return (
             <Tile value={tile} number={i} onClick={() => onClickHandler(i)} />
           );
@@ -91,10 +106,10 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return [squares[a],i];
+      return [squares[a], i];
     }
   }
-  return [null,null];
+  return [null, null];
 }
 
 export default Board;

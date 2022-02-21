@@ -11,7 +11,7 @@ function Circle(props) {
         cx="40"
         cy="40"
         r="35.5"
-        stroke-width="9"
+        strokeWidth="9"
       />
     </svg>
   );

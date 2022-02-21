@@ -9,14 +9,14 @@ function Cross(props) {
       <path
         className={props.shape1Class}
         d="M5 5L73 73"
-        stroke-width="9"
-        stroke-linecap="round"
+        strokeWidth="9"
+        strokeLinecap="round"
       />
       <path
         className={props.shape2Class}
         d="M5 73L73 5"
-        stroke-width="9"
-        stroke-linecap="round"
+        strokeWidth="9"
+        strokeLinecap="round"
       />
     </svg>
   );

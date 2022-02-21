@@ -1,3 +1,23 @@
+@keyframes boxShadowShow {
+  from {
+    box-shadow: 0px 3px 0px rgba(97, 173, 118, 0);
+  }
+
+  to {
+    box-shadow: 0px 3px 0px rgba(97, 173, 118, 1);
+  }
+}
+
+@keyframes boxShadowHide {
+  from {
+    box-shadow: 0px 3px 0px rgba(97, 173, 118, 1);
+  }
+
+  to {
+    box-shadow: 0px 3px 0px rgba(97, 173, 118, 0);
+  }
+}
+
 .button {
   width: 200px;
   height: 40px;
@@ -7,16 +27,17 @@
   gap: 60%;
   flex-direction: row;
   justify-content: space-around;
-
-
   background: #0fa16d;
-  
+  animation: boxShadowHide 0.3s forwards;
+
   border-radius: 18px;
 }
 
 .selected {
-  box-shadow: 0px 3px 0px #61ad76;
+  animation: boxShadowShow 0.3s forwards;
+  /* box-shadow: 0px 3px 0px rgba(97, 173, 118, 1); */
 }
+
 
 
 .score {
