@@ -1,19 +1,19 @@
-function Cross(props) {
+function Cross({svgClass, shape1Class, shape2Class}) {
   return (
     <svg
-      className={props.svgClass}
+      className={svgClass}
       viewBox="0 0 78 78"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        className={props.shape1Class}
+        className={shape1Class}
         d="M5 5L73 73"
         strokeWidth="9"
         strokeLinecap="round"
       />
       <path
-        className={props.shape2Class}
+        className={shape2Class}
         d="M5 73L73 5"
         strokeWidth="9"
         strokeLinecap="round"

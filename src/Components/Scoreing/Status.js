@@ -1,12 +1,18 @@
 import styles from "./Status.module.css";
-import Cross from "./Cross";
-import Circle from "./Circle";
+import Cross from "../Common/Cross";
+import Circle from "../Common/Circle";
 
-function Status(props) {
+import { useStore } from "../../Store/Store";
+
+
+function Status({next}) {
+  
+  const {state} = useStore(); 
+  
   return (
     <span id={styles.status}>
-      Teraz ruch ma:{" "}
-      {props.next===true ? (
+      Teraz ruch ma:
+      {state.isXNext===true ? (
         <Cross
           svgClass={styles.svg}
           shape1Class={styles.cross}

@@ -1,8 +1,8 @@
-function LineHorizontal(props) {
+function LineHorizontal({style, className}) {
   return (
     <svg
-      style={props.style}
-      className={props.className}
+      style={style}
+      className={className}
       width="100%"
       height="100%"
       viewBox="0 0 150 8"

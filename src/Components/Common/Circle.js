@@ -1,13 +1,13 @@
-function Circle(props) {
+function Circle({svgClass, shapeClass}) {
   return (
     <svg
-      className={props.svgClass}
+      className={svgClass}
       viewBox="0 0 80 80"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <circle
-        className={props.shapeClass}
+        className={shapeClass}
         cx="40"
         cy="40"
         r="35.5"

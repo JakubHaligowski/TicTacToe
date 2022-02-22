@@ -1,9 +1,20 @@
 import styles from "./Modal.module.css";
 
-function Modal(props) {
+import { useStore } from "../Store/Store";
+import {restart} from "../Store/Reducer"
+
+
+function Modal({winner, onRestart}) {
+  
+  const {state, dispatch} = useStore();
+  
+  const handleRestart = () => {
+    dispatch(restart());
+  }
+  
   
   let message;
-  switch (props.winner) {
+  switch (state.winner) {
     case null:
       message = "Remis!";
       break;
@@ -23,7 +34,7 @@ function Modal(props) {
         {message}
         <div className={styles.modal_options}>
           <button className={styles.modal_button}>Pokaż historię</button>
-          <button className={styles.modal_button}  onClick={props.onRestart}>Spróbuj ponownie</button>
+          <button className={styles.modal_button}  onClick={handleRestart}>Spróbuj ponownie</button>
         </div>
       </div>
     </div>

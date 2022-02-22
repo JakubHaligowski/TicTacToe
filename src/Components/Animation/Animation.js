@@ -1,18 +1,24 @@
 import LineHorizontal from "./LineHorizontal";
 import LineVertiacl from "./LineVertical";
+import { useStore } from "../../Store/Store";
 
 import styles from "./Animation.module.css";
 
-function Animation(props) {
+function Animation() {
+  
+  const {state} = useStore();
+  
+  const position =  state.winingPos;
+
   let line;
   let animationStyle;
 
-  switch (props.position) {
+  switch (position) {
     case 0:
     case 1:
     case 2:
       animationStyle = {
-        gridRow: `${props.position + 1}/${props.position + 2}`,
+        gridRow: `${position + 1}/${position + 2}`,
         gridColumn: "1/4",
       };
       line = <LineHorizontal style={animationStyle} className={styles.line} />;
@@ -22,7 +28,7 @@ function Animation(props) {
     case 5:
       animationStyle = {
         gridRow: "1/4",
-        gridColumn: `${props.position - 2}/${props.position - 2}`,
+        gridColumn: `${position - 2}/${position - 2}`,
       };
       line = <LineVertiacl style={animationStyle} className={styles.line} />;
       break;
@@ -43,7 +49,7 @@ function Animation(props) {
       );
       break;
     default:
-      console.log(props.animationPos);
+      console.log(position);
       break;
   }
 

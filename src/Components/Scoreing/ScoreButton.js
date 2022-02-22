@@ -1,9 +1,9 @@
 import styles from './ScoreButton.module.css'
 
-function ScoreButton(props) {
+function ScoreButton({selected, icon, score}) {
 
     let Class;
-    if(props.selected){
+    if(selected){
         Class = `${styles.button} ${styles.selected}`
     }else{
         Class = styles.button;
@@ -11,8 +11,8 @@ function ScoreButton(props) {
     
     return (
         <div className={Class}>
-            {props.icon}
-            <span className={styles.score}>{props.score}</span>
+            {icon}
+            <span className={styles.score}>{score}</span>
         </div>
     );
 }
