@@ -11,7 +11,12 @@ export const initialState = {
 
 export const addMove = (id) => ({ type: "move", tileId: id });
 
-export const restart = () => ({type: "restart"})
+export const restart = () => ({ type: "restart" });
+
+export const changePlayer = (player) => ({
+  type: "change_staring_player",
+  changeTo: player,
+});
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -56,6 +61,22 @@ export const reducer = (state, action) => {
 
     case "restart":
       return initialState;
+
+    case "change_staring_player":
+      if (state.move !== 0) {
+        return state;
+      }
+
+      if (action.changeTo === "X" && state.isXNext === false) {
+        return { ...state, isXNext: !state.isXNext };
+      }
+
+      if (action.changeTo === "O" && state.isXNext === true) {
+        return { ...state, isXNext: !state.isXNext };
+      }
+
+      return state;
+
     default:
       throw new Error();
   }

@@ -6,7 +6,7 @@ import styles from "./Animation.module.css";
 
 function Animation() {
   
-  const {state} = useStore();
+  const { state } = useStore();
   
   const position =  state.winingPos;
 
