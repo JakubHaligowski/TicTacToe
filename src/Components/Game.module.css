@@ -1,0 +1,7 @@
+#game{
+    position: relative;
+    background-color: #177C58;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}

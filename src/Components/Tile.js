@@ -1,11 +1,30 @@
 import styles from "./Tile.module.css";
-import Cross from "./Cross";
-import Circle from "./Circle";
+import Cross from "./Common/Cross";
+import Circle from "./Common/Circle";
 
-function Tile(props) {
+import { useStore } from "../Store/Store";
+import { addMove } from "../Store/Reducer"
+
+
+function Tile({number}) {
+  
+  const {state, dispatch} = useStore();
+
+
+  // const handleTileClick = (e,id) => {
+  //   console.log(e);
+  //   console.log(id);
+  //   // dispatch(addMove(id))
+  // }
+
+  function handleTileClick(id){
+    console.log(id);
+    dispatch(addMove(id));
+  }
+  
   let content;
 
-  switch (props.value) {
+  switch (state.board[number]) {
     case "O":
       content = (
         <Circle svgClass={styles.svgClass} shapeClass={styles.circle} />
@@ -25,11 +44,13 @@ function Tile(props) {
       break;
   }
 
+
   return (
-    <div key={props.number} className={styles.tile} onClick={props.onClick}>
+    <div key={number} className={styles.tile} onClick={() => handleTileClick(number)}>
       {content}
     </div>
   );
 }
+
 
 export default Tile;
